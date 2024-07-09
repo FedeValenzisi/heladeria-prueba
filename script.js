@@ -24,6 +24,20 @@ document.addEventListener("DOMContentLoaded", async function() {
         } else {
             console.log("No such document!");
         }
+
+        // Agregar eventos de click a los elementos del menú
+        document.getElementById("item1").addEventListener("click", function() {
+            window.location.href = "helado1kg.html";
+        });
+
+        document.getElementById("item2").addEventListener("click", function() {
+            window.location.href = "helado12kg.html";
+        });
+
+        document.getElementById("item3").addEventListener("click", function() {
+            window.location.href = "helado14kg.html";
+        });
+
     } catch (error) {
         console.log("Error getting documents: ", error);
     }

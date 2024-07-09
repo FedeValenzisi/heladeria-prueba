@@ -20,6 +20,7 @@ header {
     border-radius: 10px;
     text-align: center;
     flex: 1;
+    cursor: pointer;
 }
 
 .side-by-side {
@@ -28,4 +29,8 @@ header {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
+}
+
+footer {
+    margin: 10px;
 }
