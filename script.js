@@ -1,8 +1,9 @@
-import { db } from "./index.js";
 import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
+        const db = window.db; // Utilizar la instancia de Firestore del HTML
+        
         const helado1kgDoc = await getDoc(doc(db, "precios", "helado1kg"));
         if (helado1kgDoc.exists()) {
             document.getElementById("item1").innerText += " - $" + helado1kgDoc.data().precio;
@@ -10,14 +11,14 @@ document.addEventListener("DOMContentLoaded", async function() {
             console.log("No such document!");
         }
 
-        const helado12kgDoc = await getDoc(doc(db, "precios", "helado1/2kg"));
+        const helado12kgDoc = await getDoc(doc(db, "precios", "helado1-2kg"));
         if (helado12kgDoc.exists()) {
             document.getElementById("item2").innerText += " - $" + helado12kgDoc.data().precio;
         } else {
             console.log("No such document!");
         }
 
-        const helado14kgDoc = await getDoc(doc(db, "precios", "helado1/4kg"));
+        const helado14kgDoc = await getDoc(doc(db, "precios", "helado1-4kg"));
         if (helado14kgDoc.exists()) {
             document.getElementById("item3").innerText += " - $" + helado14kgDoc.data().precio;
         } else {
