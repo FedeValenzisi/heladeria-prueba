@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
 
         // Agregar eventos de click a los elementos del menú
-        document.getElementById("item1").addEventListener("click", function() {
+        document.getElementById("kilo").addEventListener("click", function() {
             window.location.href = "helado1kg.html";
         });
 
-        document.getElementById("item2").addEventListener("click", function() {
+        document.getElementById("medio").addEventListener("click", function() {
             window.location.href = "helado12kg.html";
         });
 
-        document.getElementById("item3").addEventListener("click", function() {
+        document.getElementById("cuarto").addEventListener("click", function() {
             window.location.href = "helado14kg.html";
         });
 
