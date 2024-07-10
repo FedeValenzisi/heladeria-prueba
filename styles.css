@@ -3,16 +3,17 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
 header {
     background-color: rgb(236, 166, 233);
     color: rgb(221, 101, 211);
     text-align: center;
-    padding: 10px;
+    padding: 20px;
 }
 
 main {
@@ -20,16 +21,19 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 }
 
 .menu {
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
     background-color: rgb(236, 166, 201);
     border-radius: 10px;
-    text-align: left;
+    text-align: center;
     flex: 1;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
 }
 
 .side-by-side {
@@ -38,47 +42,46 @@ main {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    overflow: hidden; /* Evita que el contenido desborde horizontalmente */
 }
 
 footer {
-    background-color: #f8f9fa; /* Cambia este color al que prefieras */
+    background-color: #f8f9fa;
     padding: 20px;
     text-align: center;
     width: 100%;
-    margin-top: 50px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.gusto-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
 }
 
-.gusto-checkbox {
-    margin-right: 10px;
-}
-
-.gusto-label {
-    margin-right: 10px;
-    font-family: Poppins;
-    font-size: 14px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    padding: 2px;
-}
 
 .img {
-    width: 50%;
-    height: 50%;
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
     object-fit: cover;
-    margin-left: 15px;
-    margin-bottom: 8px;
+    margin: 10px 0;
 }
 
 .items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .side-by-side {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu {
+        width: 90%; /* Ajusta el ancho del menú en pantallas pequeñas */
+        margin: 10px 0;
+    }
 }

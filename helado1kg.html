@@ -4,7 +4,7 @@
     <title>1kg de Helado</title>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="helado1kg.css">
     <script type="module">
         // Importar las funciones que necesitas del SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
@@ -37,11 +37,24 @@
         <h1>1kg de Helado</h1>
     </header>
     <main>
-        <img src="images/kilo.jpg" alt="1kg de helado">
+        <img class="img" src="images/kilo.jpg" alt="1kg de helado">
+        <p class="max-gustos">El máximo de gustos es de 4.</p>
         <div id="gustos"></div>
     </main>
-    <footer>
-        <p>Ante cualquier inconveniente, avisar por WhatsApp: +541123456789</p>
-    </footer>
+    <div class="bottom-bar">
+        <div class="bottom-bar-container">
+            <button class="bottom-button" id="add-to-order">Agregar al pedido</button>
+            <button class="bottom-button" id="cancel-order">Cancelar</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById("add-to-order").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+        document.getElementById("cancel-order").addEventListener("click", function() {
+            // Implementar lógica para cancelar el pedido
+            window.location.href = "index.html";
+        });
+    </script>
 </body>
 </html>
