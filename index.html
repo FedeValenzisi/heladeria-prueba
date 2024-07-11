@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Prueba</title>
+    <title>L'Anyulina</title>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script type="module">
-        // Importar las funciones que necesitas del SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
       
-        // Configuración de tu app de Firebase
         const firebaseConfig = {
           apiKey: "AIzaSyAxAuJpgLhkCm3nHBV5keddw1A9auWaedc",
           authDomain: "heladeria-5dba7.firebaseapp.com",
@@ -21,14 +19,9 @@
           measurementId: "G-9XVV4RCBZ2"
         };
       
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
-        // Inicializar Firestore
         const db = getFirestore(app);
-        
-        // Exportar db para ser utilizado en script.js
         window.db = db;
-
     </script>
     <script src="script.js" type="module" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +47,36 @@
         </div>
     </main>
     <footer>
+        <button id="view-cart">Ver Carrito</button>
         <p>Ante cualquier inconveniente, avisar por WhatsApp: +541123456789</p>
     </footer>
+    <div class="bottom-bar">
+        <div class="bottom-bar-container">
+            <span id="bottom-total-price" class="total-price">Total: $0</span>
+            <span id="bottom-total-items" class="total-items">Items: 0</span>
+        </div>
+    </div>
+    <script>
+        document.getElementById("view-cart").addEventListener("click", function() {
+            window.location.href = "carrito.html";
+        });
+
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        const viewCartButton = document.getElementById("view-cart");
+        const totalPriceElement = document.getElementById("bottom-total-price");
+        const totalItemsElement = document.getElementById("bottom-total-items");
+
+        function updateBottomBar() {
+            const total = carrito.reduce((acc, item) => acc + item.precio, 0);
+            totalPriceElement.innerText = `Total: $${total.toFixed(2)}`;
+            totalItemsElement.innerText = `Items: ${carrito.length}`;
+        }
+
+        if (carrito.length > 0) {
+            viewCartButton.innerText = `Ver Carrito (${carrito.length})`;
+        }
+
+        updateBottomBar();
+    </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Carrito</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="carrito.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+    </header>
+    <main>
+        <div id="cart-items"></div>
+        <div id="total-cart-price" class="total-price"></div>
+    </main>
+    <div class="bottom-bar">
+        <div class="bottom-bar-container">
+            <button class="bottom-button" id="confirm-order">Confirmar Pedido</button>
+            <button class="bottom-button" id="clear-cart">Vaciar Carrito</button>
+        </div>
+    </div>
+    <script>
+        const totalPrice = localStorage.getItem("totalPrice") || "0";
+        document.getElementById("total-cart-price").innerText = `Total del Carrito: $${totalPrice}`;
+        
+        document.getElementById("confirm-order").addEventListener("click", function() {
+            alert("Pedido confirmado!");
+            localStorage.removeItem("carrito");
+            localStorage.removeItem("totalPrice");
+            window.location.href = "index.html";
+        });
+        
+        document.getElementById("clear-cart").addEventListener("click", function() {
+            localStorage.removeItem("carrito");
+            localStorage.removeItem("totalPrice");
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
