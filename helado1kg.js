@@ -100,17 +100,6 @@ document.addEventListener("DOMContentLoaded", async function() {
             window.location.href = "index.html";
         });
 
-        function updateButtons() {
-            const incrementButtons = gustosList.querySelectorAll('.increment-button');
-            incrementButtons.forEach(button => {
-                if (totalGustos >= 4) {
-                    button.disabled = true;
-                } else {
-                    button.disabled = false;
-                }
-            });
-        }
-
     } catch (error) {
         console.log("Error getting documents: ", error);
     }
