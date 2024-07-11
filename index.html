@@ -5,78 +5,46 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-      
-        const firebaseConfig = {
-          apiKey: "AIzaSyAxAuJpgLhkCm3nHBV5keddw1A9auWaedc",
-          authDomain: "heladeria-5dba7.firebaseapp.com",
-          projectId: "heladeria-5dba7",
-          storageBucket: "heladeria-5dba7.appspot.com",
-          messagingSenderId: "6982472398",
-          appId: "1:6982472398:web:1b74c6aac1dfc61001b69f",
-          measurementId: "G-9XVV4RCBZ2"
-        };
-      
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        window.db = db;
-    </script>
+    <script type="module" src="firebaseConfig.js" defer></script>
     <script src="script.js" type="module" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header>
-        <h1>L'Anyulina Achával</h1>
-    </header>
-    <main>
-        <div class="side-by-side">
-            <div id="kilo" class="menu">
-                <h3 id="item1" class="items">1kg de helado</h3>
-                <img class="img" src="images/kilo.jpg" alt="1kg de helado">
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <div id="content" class="content hidden">
+        <header>
+            <h1>L'Anyulina Achával</h1>
+        </header>
+        <main>
+            <div class="side-by-side">
+                <div id="kilo" class="menu">
+                    <h3 id="item1" class="items">1kg de helado</h3>
+                    <img class="img" src="images/kilo.jpg" alt="1kg de helado">
+                </div>
+                <div id="medio" class="menu">
+                    <h3 id="item2" class="items">1/2kg de helado</h3>
+                    <img class="img" src="images/medio.jpg" alt="1/2kg de helado">
+                </div>
+                <div id="cuarto" class="menu">
+                    <h3 id="item3" class="items">1/4 de helado</h3>
+                    <img class="img" src="images/cuarto.jpg" alt="1/4 de helado">
+                </div>
             </div>
-            <div id="medio" class="menu">
-                <h3 id="item2" class="items">1/2kg de helado</h3>
-                <img class="img" src="images/medio.jpg" alt="1/2kg de helado">
+        </main>
+        <footer>
+            <p>Ante cualquier inconveniente, avisar por WhatsApp: +541123456789</p>
+        </footer>
+        <div class="bottom-bar">
+            <div class="bottom-bar-container">
+                <div class="bottom-bar-info">
+                    <span id="bottom-total-price" class="total-price">Total: $0.00</span>
+                    <span id="bottom-total-items" class="total-items">Items: 0</span>
+                </div>
+                <button id="view-cart" class="view-cart-button">Ver Carrito</button>
             </div>
-            <div id="cuarto" class="menu">
-                <h3 id="item3" class="items">1/4 de helado</h3>
-                <img class="img" src="images/cuarto.jpg" alt="1/4 de helado">
-            </div>
-        </div>
-    </main>
-    <footer>
-        <button id="view-cart">Ver Carrito</button>
-        <p>Ante cualquier inconveniente, avisar por WhatsApp: +541123456789</p>
-    </footer>
-    <div class="bottom-bar">
-        <div class="bottom-bar-container">
-            <span id="bottom-total-price" class="total-price">Total: $0</span>
-            <span id="bottom-total-items" class="total-items">Items: 0</span>
         </div>
     </div>
-    <script>
-        document.getElementById("view-cart").addEventListener("click", function() {
-            window.location.href = "carrito.html";
-        });
-
-        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-        const viewCartButton = document.getElementById("view-cart");
-        const totalPriceElement = document.getElementById("bottom-total-price");
-        const totalItemsElement = document.getElementById("bottom-total-items");
-
-        function updateBottomBar() {
-            const total = carrito.reduce((acc, item) => acc + item.precio, 0);
-            totalPriceElement.innerText = `Total: $${total.toFixed(2)}`;
-            totalItemsElement.innerText = `Items: ${carrito.length}`;
-        }
-
-        if (carrito.length > 0) {
-            viewCartButton.innerText = `Ver Carrito (${carrito.length})`;
-        }
-
-        updateBottomBar();
-    </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    
     const cartItemsContainer = document.getElementById("cart-items");
     const totalCartPrice = document.getElementById("total-cart-price");
 
@@ -36,11 +37,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("confirm-order").addEventListener("click", function() {
         alert("Pedido confirmado!");
         localStorage.removeItem("carrito");
+        localStorage.removeItem("totalPrice");
         window.location.href = "index.html";
     });
 
     document.getElementById("clear-cart").addEventListener("click", function() {
         localStorage.removeItem("carrito");
-        window.location.reload();
+        localStorage.removeItem("totalPrice");
+        window.location.href = "index.html"; // Redirecciona a la página principal
     });
 });

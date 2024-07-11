@@ -1,0 +1,116 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+header {
+    background-color: rgb(236, 166, 233);
+    color: rgb(221, 101, 211);
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    height: 100px; /* Ajusta la altura de la barra */
+    padding: 0; /* Elimina el padding */
+}
+
+.bottom-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px; /* Añade un poco de margen */
+}
+
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 10px; /* Añade un poco de margen inferior */
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* Centrar los botones */
+    width: 100%;
+}
+
+.bottom-button {
+    background-color: rgb(221, 101, 211); /* Violeta */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: auto; /* Ajustar el ancho automáticamente */
+    margin: 0 5px; /* Reducir el espacio entre los botones */
+}
+
+.bottom-button:hover {
+    background-color: rgb(162, 113, 166); /* Violeta más oscuro */
+    color: white;
+}
+
+.cancel-button {
+    background-color: red; /* Rojo */
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: darkred; /* Rojo más oscuro */
+    color: white;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+
+    .menu {
+        width: 90%; /* Ajusta el ancho del menú en pantallas pequeñas */
+        margin: 10px 0;
+    }
+
+    .bottom-bar-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-group {
+        flex-direction: row; /* Asegurar que los botones estén en una fila */
+        flex-wrap: wrap; /* Permitir que los botones se envuelvan */
+        justify-content: center; /* Centrar los botones */
+    }
+
+    .bottom-button {
+        margin: 5px; /* Ajustar el margen entre botones */
+    }
+}

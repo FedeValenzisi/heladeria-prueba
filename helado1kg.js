@@ -1,17 +1,41 @@
-import { getDocs, collection } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+import { getDocs, collection, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", async function() {
     try {
         const db = window.db;
+
+        // Mostrar el spinner y ocultar el contenido al comenzar la carga
+        const loadingElement = document.getElementById("loading");
+        const contentElement = document.getElementById("content");
+        loadingElement.classList.remove("hidden");
+        contentElement.classList.add("hidden");
         
-        const precioKiloDoc = await getDoc(doc(db, "precios", "helado1kg"));
-        let precioKilo = 0;
-        if (precioKiloDoc.exists()) {
-            precioKilo = precioKiloDoc.data().precio;
-            document.getElementById("product-price").innerText = `Producto: $${precioKilo.toFixed(2)}`;
+        // Determinar el tipo de helado basándose en el título de la página
+        const title = document.querySelector('header h1').innerText;
+        let heladoType;
+        let maxGustos;
+        if (title.includes('1kg')) {
+            heladoType = "helado1kg";
+            maxGustos = 4;
+        } else if (title.includes('1/2kg')) {
+            heladoType = "helado1-2kg";
+            maxGustos = 3;
+        } else if (title.includes('1/4kg')) {
+            heladoType = "helado1-4kg";
+            maxGustos = 3;
         } else {
-            console.log("No se encontró el precio del kilo de helado en la base de datos.");
+            console.log("Tipo de helado no reconocido.");
+            return;
+        }
+
+        // Obtener el precio del helado
+        const precioDoc = await getDoc(doc(db, "precios", heladoType));
+        let precio = 0;
+        if (precioDoc.exists()) {
+            precio = precioDoc.data().precio;
+            document.getElementById("product-price").innerText = `Producto: $${precio.toFixed(2)}`;
+        } else {
+            console.log(`No se encontró el precio del ${heladoType} en la base de datos.`);
             return;
         }
 
@@ -54,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             gustosList.appendChild(listItem);
 
             incrementButton.addEventListener("click", function() {
-                if (totalGustos < 4) {
+                if (totalGustos < maxGustos) {
                     const currentCount = parseInt(counter.innerText);
                     counter.innerText = currentCount + 1;
                     totalGustos++;
@@ -75,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         function updateButtons() {
             const incrementButtons = gustosList.querySelectorAll('.increment-button');
             incrementButtons.forEach(button => {
-                button.disabled = totalGustos >= 4;
+                button.disabled = totalGustos >= maxGustos;
             });
         }
 
@@ -90,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             });
 
             const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-            carrito.push({ item: "1kg de helado", gustos: selectedGustos, precio: precioKilo });
+            carrito.push({ item: title, gustos: selectedGustos, precio: precio });
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
             window.location.href = "index.html";
@@ -99,6 +123,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         document.getElementById("cancel-order").addEventListener("click", function() {
             window.location.href = "index.html";
         });
+
+        // Ocultar el spinner y mostrar el contenido al terminar la carga
+        loadingElement.classList.add("hidden");
+        contentElement.classList.remove("hidden");
 
     } catch (error) {
         console.log("Error getting documents: ", error);
